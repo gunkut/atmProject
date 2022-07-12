@@ -9,11 +9,11 @@ import java.util.Scanner;
 public class Main {
     public static void main(String args[]) {
         Operation operation = new AtmOperation();
-        /*int cardNumber = 111;
-        int cardPassword = 123;*/
+        int cardNumber = 111;
+        int cardPassword = 123;
 
         Scanner atmUser = new Scanner(System.in);
-        /*while(true) {
+        while(true) {
             System.out.print("Enter your card number:");
             int userCardNumber = atmUser.nextInt();
 
@@ -26,7 +26,7 @@ public class Main {
             } else {
                 System.out.println("Invalid card number or password, please try again");
             }
-        }*/
+        }
         while(true) {
             System.out.println("1 - Wallet");
             System.out.println("2 - Withdraw Money");
