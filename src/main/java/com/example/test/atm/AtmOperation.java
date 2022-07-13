@@ -11,18 +11,25 @@ public class AtmOperation implements Operation {
     @Override
     public void withdrawAmount(int withdrawAmount) {
         if (withdrawAmount <= atm.getBalance()){
-            atm.updateBalance(withdrawAmount, "-");
-            viewMoney();
-            System.out.println("Here is your " + withdrawAmount + "$");
+            if (withdrawAmount % 5 == 0) {
+                atm.updateBalance(withdrawAmount, "-");
+                viewMoney();
+            } else {
+                System.out.println("you can only get banknotes in multiples of five");
+            }
         } else {
             System.out.println("Insufficient balance");
         }
 }
     @Override
     public void depositAmount(int depositAmount) {
-        atm.updateBalance(depositAmount, "+");
-        viewMoney();
-        System.out.println(depositAmount + "$ deposited successfully");
+        if (depositAmount % 5 == 0) {
+            atm.updateBalance(depositAmount, "+");
+            viewMoney();
+            System.out.println(depositAmount + "$ deposited successfully");
+        } else {
+            System.out.println("you can only Insert banknotes in multiples of five");
+        }
     }
 }
 

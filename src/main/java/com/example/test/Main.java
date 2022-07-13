@@ -44,11 +44,8 @@ public class Main {
                 case 2:
                     System.out.println("Enter amount:");
                     int withdrawAmount = atmUser.nextInt();
-                    if (withdrawAmount != 0 && withdrawAmount % 5 == 0) {
-                        operation.withdrawAmount(withdrawAmount);
-                    } else {
-                        System.out.println("Invalid Request, Please Try Again");
-                    }
+                    operation.withdrawAmount(withdrawAmount);
+
                     break;
                 case 3:
                     System.out.println("Enter amount:");
