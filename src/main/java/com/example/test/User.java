@@ -8,7 +8,6 @@ import java.util.Date;
 public class User {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-
     @Column (name = "id")
     private int id;
     @Column (name = "user_id")
@@ -17,6 +16,8 @@ public class User {
     private Date date;
     @Column (name = "operation_type")
     private String operation_type;
+    @Column (name = "amount")
+    private int amount;
     @Column (name = "log_message")
     private String log_message;
     @Column (name = "log_message_id")
@@ -25,11 +26,12 @@ public class User {
     public User() {
     }
 
-    public User(int id, int user_id, Date date, String operation_type, String log_message, int log_message_id) {
+    public User(int id, int user_id, Date date, String operation_type, int amount, String log_message, int log_message_id) {
         this.id = id;
         this.user_id = user_id;
         this.date = date;
         this.operation_type = operation_type;
+        this.amount = amount;
         this.log_message = log_message;
         this.log_message_id = log_message_id;
     }
@@ -66,6 +68,14 @@ public class User {
         this.operation_type = operation_type;
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
     public String getLog_message() {
         return log_message;
     }
@@ -89,6 +99,7 @@ public class User {
                 ", user_id=" + user_id +
                 ", date=" + date +
                 ", operation_type='" + operation_type + '\'' +
+                ", amount=" + amount +
                 ", log_message='" + log_message + '\'' +
                 ", log_message_id=" + log_message_id +
                 '}';

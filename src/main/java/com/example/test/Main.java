@@ -1,7 +1,9 @@
 package com.example.test;
 
+import com.example.test.atm.AtmBackend;
 import com.example.test.atm.AtmOperation;
 import com.example.test.atm.Operation;
+import com.example.test.atm.UserBackend;
 
 import java.util.Scanner;
 
@@ -9,11 +11,12 @@ import java.util.Scanner;
 public class Main {
     public static void main(String args[]) {
         Operation operation = new AtmOperation();
-        int cardNumber = 111;
-        int cardPassword = 123;
+        /*int cardNumber = 111;
+        int cardPassword = 123;*/
+
 
         Scanner atmUser = new Scanner(System.in);
-        while(true) {
+        /*while(true) {
             System.out.print("Enter your card number:");
             int userCardNumber = atmUser.nextInt();
 
@@ -26,8 +29,9 @@ public class Main {
             } else {
                 System.out.println("Invalid card number or password, please try again");
             }
-        }
+        }*/
         while(true) {
+            operation.viewMoney();
             System.out.println("1 - Wallet");
             System.out.println("2 - Withdraw Money");
             System.out.println("3 - Deposit Money");

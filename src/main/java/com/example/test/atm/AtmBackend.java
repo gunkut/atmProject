@@ -6,6 +6,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.Date;
+
 
 public class AtmBackend {
 
@@ -18,6 +20,7 @@ public class AtmBackend {
     private double balance;
     SessionFactory factory;
     Session session;
+
     public AtmBackend() {
 
     }
@@ -32,7 +35,7 @@ public class AtmBackend {
         try {
             connectDatabase();
             Atm atm = session.get(Atm.class, 1);
-            totalMoney = (atm.getTwo_hundred()*200 + atm.getOne_hundred()*100 + atm.getFifty()*50 + atm.getTwenty()*20 + atm.getTen()*10 + atm.getFive()*5);
+            totalMoney = (atm.getTwo_hundred() * 200 + atm.getOne_hundred() * 100 + atm.getFifty() * 50 + atm.getTwenty() * 20 + atm.getTen() * 10 + atm.getFive() * 5);
             this.printEachMoney(atm);
             session.getTransaction().commit();
         } catch (Exception e) {
@@ -53,6 +56,8 @@ public class AtmBackend {
     public void setBalance(double balance) {
         this.balance = balance;
     }
+
+
 
     public int decreaseMoney (int money, int currency, int currencyAmount) {
 
@@ -84,9 +89,11 @@ public class AtmBackend {
     }
 
     public void reduceBalance(int money){
+
         try {
             connectDatabase();
             Atm atm = session.get(Atm.class, 1);
+
 
             System.out.println("requested money is available");
 
@@ -113,7 +120,6 @@ public class AtmBackend {
             fiveAmount = parseMoney(money, 5, atm.getFive(), "-");
             atm.setFive(atm.getFive() - fiveAmount);
             money = decreaseMoney(money, 5, fiveAmount);
-            money = 0;
 
             session.getTransaction().commit();
             System.out.println("Done!!");
@@ -124,6 +130,7 @@ public class AtmBackend {
         }
     }
     public void addBalance(int money){
+
         try {
             connectDatabase();
             Atm atm = session.get(Atm.class, 1);
@@ -161,84 +168,4 @@ public class AtmBackend {
             factory.close();
         }
     }
-    /*public void updateBalance(int money, String op){
-
-        try {
-            connectDatabase();
-            Atm atm = session.get(Atm.class, 1);
-            if (op.equals("+")) {
-
-                twoHundredAmount = parseMoney(money, 200, atm.getTwo_hundred(), "+");
-                money = decreaseMoney(money, 200, twoHundredAmount);
-                atm.setTwo_hundred(atm.getTwo_hundred() + twoHundredAmount);
-
-                oneHundredAmount = parseMoney(money, 100, atm.getOne_hundred(), "+");
-                money = decreaseMoney(money, 100, oneHundredAmount);
-                atm.setOne_hundred(atm.getOne_hundred() + oneHundredAmount);
-
-                fiftyAmount = parseMoney(money, 50, atm.getFifty(), "+");
-                money = decreaseMoney(money, 50, fiftyAmount);
-                atm.setFifty(atm.getFifty() + fiftyAmount);
-
-                twentyAmount = parseMoney(money, 20, atm.getFifty(), "+");
-                money = decreaseMoney(money, 20, twentyAmount);
-                atm.setTwenty(atm.getTwenty() + twentyAmount);
-
-                tenAmount = parseMoney(money, 10, atm.getTen(), "+");
-                money = decreaseMoney(money, 10, tenAmount);
-                atm.setTen(atm.getTen() + tenAmount);
-
-                fiveAmount = parseMoney(money, 5, atm.getFive(), "+");
-                money = decreaseMoney(money, 5, fiveAmount);
-                atm.setFive(atm.getFive() + fiveAmount);
-                money = 0;
-            } else if (op.equals("-")){
-
-                System.out.println("requested money is available");
-
-                twoHundredAmount = parseMoney(money, 200, atm.getTwo_hundred(), "-");
-                atm.setTwo_hundred(atm.getTwo_hundred() - twoHundredAmount);
-                money = decreaseMoney(money, 200, twoHundredAmount);
-                System.out.println("200 amount: " + twoHundredAmount);
-                System.out.println(money);
-
-                oneHundredAmount = parseMoney(money, 100, atm.getOne_hundred(), "-");
-                atm.setOne_hundred(atm.getOne_hundred() - oneHundredAmount);
-                money = decreaseMoney(money, 100, oneHundredAmount);
-                System.out.println("100 amount: " + oneHundredAmount);
-                System.out.println(money);
-
-                fiftyAmount = parseMoney(money, 50, atm.getFifty(), "-");
-                atm.setFifty(atm.getFifty() - fiftyAmount);
-                money = decreaseMoney(money, 50, fiftyAmount);
-                System.out.println("50 amount: " + fiftyAmount);
-                System.out.println(money);
-
-                twentyAmount = parseMoney(money, 20, atm.getTwenty(), "-");
-                atm.setTwenty(atm.getTwenty() - twentyAmount);
-                money = decreaseMoney(money, 20, twentyAmount);
-                System.out.println("20 amount: " + twentyAmount);
-                System.out.println(money);
-
-                tenAmount = parseMoney(money, 10, atm.getTen(), "-");
-                atm.setTen(atm.getTen() - tenAmount);
-                money = decreaseMoney(money, 10, tenAmount);
-                System.out.println("10 amount: " + tenAmount);
-                System.out.println(money);
-
-                fiveAmount = parseMoney(money, 5, atm.getFive(), "-");
-                atm.setFive(atm.getFive() - fiveAmount);
-                money = decreaseMoney(money, 5, fiveAmount);
-                System.out.println("5 amount: " + fiveAmount);
-                System.out.println(money);
-                money = 0;
-            }
-            session.getTransaction().commit();
-            System.out.println("Done!!");
-        } catch (Exception e) {
-            System.out.println(e);
-        } finally {
-            factory.close();
-        }
-    }*/
 }
